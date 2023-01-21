@@ -5,4 +5,6 @@
    - `ENCRYPTION_KEYS` should have 32 symbols length or more
    - Avoid to use special characters
 4. Run `docker compose --profiles setup up`
-5. If you want to run `docker compose up` again for some reason, then don't forget to remove created volumes or disable `setup`
+   - `setup` container runs once, other containers will start automatically at system startup
+   - Use `docker compose up` or Docker Desktop to start containers again
+   - If you want to run setup again, then don't forget to remove created volumes
