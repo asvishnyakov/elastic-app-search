@@ -13,7 +13,7 @@ public static class ServiceBuilder
         // Configure default values
         configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
         {
-            { $"{nameof(ElasticAppSearch)}:{nameof(ElasticAppSearchOptions.Endpoint)}", Constants.DefaultEndpoint }
+            { $"{nameof(ElasticAppSearch)}:{nameof(ApiClientOptions.Endpoint)}", Constants.DefaultEndpoint }
         });
         // Load secrets and overriding values from environment variables
         configurationBuilder.AddEnvironmentVariables();

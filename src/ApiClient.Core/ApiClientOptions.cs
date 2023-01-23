@@ -2,7 +2,7 @@
 
 namespace ElasticAppSearch.ApiClient.Core;
 
-public sealed record ElasticAppSearchOptions
+public sealed record ApiClientOptions
 {
     [Required]
     public string Endpoint { get; init; } = null!;

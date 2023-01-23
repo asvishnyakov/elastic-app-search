@@ -10,14 +10,14 @@ public static class ServiceCollectionExtensions
 {
     public static void AddElasticAppSearch(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<IValidateOptions<ElasticAppSearchOptions>, OptionsValidator>();
-        services.AddOptions<ElasticAppSearchOptions>().Bind(configuration).ValidateDataAnnotations().ValidateOnStart();
+        services.AddSingleton<IValidateOptions<ApiClientOptions>, OptionsValidator>();
+        services.AddOptions<ApiClientOptions>().Bind(configuration).ValidateDataAnnotations().ValidateOnStart();
 
         services.AddSingleton<IApiClient, Services.ApiClient>();
 
         services.AddHttpClient(Configuration.HttpClientName, (serviceProvider, httpClient) =>
         {
-            var elasticAppSearchOptions = serviceProvider.GetRequiredService<IOptions<ElasticAppSearchOptions>>().Value;
+            var elasticAppSearchOptions = serviceProvider.GetRequiredService<IOptions<ApiClientOptions>>().Value;
 
             httpClient.BaseAddress = new Uri($"{elasticAppSearchOptions.Endpoint}/api/as/v1/");
 
@@ -29,7 +29,7 @@ public static class ServiceCollectionExtensions
             }
         }).ConfigurePrimaryHttpMessageHandler(serviceProvider =>
         {
-            var elasticAppSearchOptions = serviceProvider.GetRequiredService<IOptions<ElasticAppSearchOptions>>().Value;
+            var elasticAppSearchOptions = serviceProvider.GetRequiredService<IOptions<ApiClientOptions>>().Value;
 
             var handler = new HttpClientHandler
             {

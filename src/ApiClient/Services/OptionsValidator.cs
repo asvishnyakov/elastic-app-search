@@ -4,9 +4,9 @@ using Microsoft.Extensions.Options;
 
 namespace ElasticAppSearch.ApiClient.Services;
 
-public class OptionsValidator: IValidateOptions<ElasticAppSearchOptions>
+public class OptionsValidator: IValidateOptions<ApiClientOptions>
 {
-    public ValidateOptionsResult Validate(string? name, ElasticAppSearchOptions options)
+    public ValidateOptionsResult Validate(string? name, ApiClientOptions options)
     {
         var httpClientHandler = new HttpClientHandler();
         if (options.EnableHttpCompression.GetValueOrDefault() && !httpClientHandler.SupportsAutomaticDecompression)
