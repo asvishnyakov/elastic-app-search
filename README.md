@@ -11,6 +11,8 @@
    - Use `docker compose up` or Docker Desktop to start containers again
    - If you want to run setup again, then don't forget to remove created volumes
 
+> Tip: you can override other docker compose file variables (like `KIBANA_PORT`) using environment variables
+
 ## Setup sample engine
 1. Open Kibana (`http://localhost:5601/`)
 2. Go to `Enterprise Search` -> `Search` -> `App Searh`
@@ -23,4 +25,4 @@
 4. Copy `Private API Key`
 5. Paste it to `ElasticAppSearch__PrivateApiKey` environment variable
 
-> Tip: you can override other Elastic App Search API client options (like `Endpoint` url) using environment variables
+> Tip: you can override or setup other Elastic App Search API client options (like `Endpoint` url) using environment variables
