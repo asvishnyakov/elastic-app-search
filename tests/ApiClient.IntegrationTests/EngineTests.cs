@@ -1,7 +1,4 @@
-﻿using ElasticAppSearch.ApiClient.Core.Services;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ElasticAppSearch.ApiClient.IntegrationTests;
+﻿namespace ElasticAppSearch.ApiClient.IntegrationTests;
 
 public class EngineTests
 {

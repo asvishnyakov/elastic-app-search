@@ -1,9 +1,4 @@
-﻿using ElasticAppSearch.ApiClient.Core;
-using ElasticAppSearch.ApiClient.Extensions;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ElasticAppSearch.ApiClient.IntegrationTests;
+﻿namespace ElasticAppSearch.ApiClient.IntegrationTests;
 
 public static class ServiceBuilder
 {
