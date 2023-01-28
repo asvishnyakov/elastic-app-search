@@ -1,5 +1,4 @@
 using System.Reflection;
-using ElasticAppSearch.ApiClient.Extensions;
 using ElasticAppSearch.ApiClient.Json.Attributes;
 using ElasticAppSearch.ApiClient.Json.Handling;
 using Newtonsoft.Json;
@@ -29,8 +28,7 @@ public class CustomContractResolver : DefaultContractResolver
     private static bool ShouldDo(JsonProperty jsonProperty, object obj, bool shouldIgnoreEmpty, Predicate<object>? callback)
     {
         var value = jsonProperty.ValueProvider?.GetValue(obj);
-        var enumerable = value?.AsArray();
-        var result = !shouldIgnoreEmpty || enumerable != null && enumerable.Any();
+        var result = !shouldIgnoreEmpty || value is ICollection<object> { Count: > 0 } or string and not "";
         if (callback != null)
         {
             result &= callback(obj);

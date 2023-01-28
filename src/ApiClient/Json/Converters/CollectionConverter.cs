@@ -6,24 +6,24 @@ using Newtonsoft.Json.Linq;
 
 namespace ElasticAppSearch.ApiClient.Json.Converters
 {
-    public class ArrayConverter : JsonConverter
+    public class CollectionConverter : JsonConverter
     {
         private readonly SingleValueHandling _singleValueHandling;
         private readonly JsonConverter _itemConverter;
 
-        public ArrayConverter() : this(SingleValueHandling.AsArray)
+        public CollectionConverter() : this(SingleValueHandling.AsArray)
         {
         }
 
-        public ArrayConverter(SingleValueHandling singleValueHandling) : this(singleValueHandling, null)
+        public CollectionConverter(SingleValueHandling singleValueHandling) : this(singleValueHandling, null)
         {
         }
 
-        public ArrayConverter(SingleValueHandling singleValueHandling, Type? itemConverterType) : this(singleValueHandling, itemConverterType, null)
+        public CollectionConverter(SingleValueHandling singleValueHandling, Type? itemConverterType) : this(singleValueHandling, itemConverterType, null)
         {
         }
 
-        public ArrayConverter(SingleValueHandling singleValueHandling, Type? itemConverterType, object?[]? itemConverterParameters)
+        public CollectionConverter(SingleValueHandling singleValueHandling, Type? itemConverterType, object?[]? itemConverterParameters)
         {
             _singleValueHandling = singleValueHandling;
             _itemConverter = itemConverterType != null
@@ -59,14 +59,14 @@ namespace ElasticAppSearch.ApiClient.Json.Converters
         {
             if (value != null)
             {
-                var array = value.AsArray();
-                if (_singleValueHandling == SingleValueHandling.AsArray || array?.Length > 1)
+                var collection = value as ICollection<object>;
+                if (_singleValueHandling == SingleValueHandling.AsArray || collection?.Count > 1)
                 {
-                    Serialize(writer, array, serializer);
+                    Serialize(writer, collection, serializer);
                 }
                 else
                 {
-                    var element = array?.FirstOrDefault();
+                    var element = collection?.FirstOrDefault();
                     Serialize(writer, element, serializer);
                 }
             }
@@ -95,10 +95,10 @@ namespace ElasticAppSearch.ApiClient.Json.Converters
 
         private void Serialize(JsonWriter writer, object? value, JsonSerializer serializer)
         {
-            if (value is Array array)
+            if (value is ICollection<object> collection)
             {
                 writer.WriteStartArray();
-                foreach (var element in array)
+                foreach (var element in collection)
                 {
                     _itemConverter.WriteJson(writer, element, serializer);
                 }
