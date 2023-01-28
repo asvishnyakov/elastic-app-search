@@ -1,0 +1,9 @@
+global using Xunit;
+global using ElasticAppSearch.ApiClient.Core;
+global using ElasticAppSearch.ApiClient.Core.Services;
+global using ElasticAppSearch.ApiClient.Json;
+global using ElasticAppSearch.ApiClient.Json.Attributes;
+global using ElasticAppSearch.ApiClient.Json.Constants;
+global using ElasticAppSearch.ApiClient.Json.Converters;
+global using ElasticAppSearch.ApiClient.Json.Handling;
+global using ElasticAppSearch.ApiClient.Json.Resolvers;
